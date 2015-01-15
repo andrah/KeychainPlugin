@@ -5,7 +5,7 @@
     <description>Keychain Plugin</description>
     <license>Apache 2.0</license>
     <keywords>cordova,keychain</keywords>
-    <js-module src="www/keychain.js" name="device">
+    <js-module src="www/keychain.js" name="keychain">
         <clobbers target="window.Keychain" />
     </js-module>
     <platform name="ios">
