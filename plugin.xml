@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        id="ro.stomescu.cordova.plugin.keychain" version="0.0.1">
+    <name>Keychain</name>
+    <description>Keychain Plugin</description>
+    <license>Apache 2.0</license>
+    <keywords>cordova,keychain</keywords>
+    <js-module src="www/keychain.js" name="device">
+        <clobbers target="window.Keychain" />
+    </js-module>
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="Keychain">
+                <param name="ios-package" value="CDVKeychain"/>
+            </feature>
+        </config-file>
+        <header-file src="src/ios/CDVKeychain.h" />
+        <source-file src="src/ios/CDVKeychain.m" />
+    </platform>
+</plugin>
