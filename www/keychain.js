@@ -25,4 +25,16 @@ var cordova = require('cordova'),
 var Keychain = function() {
 };
 
+Keychain.prototype.get = function(successCallback, errorCallback, key, service) {
+    cordova.exec(successCallback, errorCallback, 'Keychain', 'get', [key, service]);
+}
+
+Keychain.prototype.set = function(successCallback, errorCallback, key, value, service) {
+    cordova.exec(successCallback, errorCallback, 'Keychain', 'set', [key, value, service]);
+}
+
+Keychain.prototype.remove = function(successCallback, errorCallback, key, service) {
+    cordova.exec(successCallback, errorCallback, 'Keychain', 'remove', [key, service]);
+}
+
 module.exports = Keychain;
