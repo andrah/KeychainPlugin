@@ -21,17 +21,43 @@
 
 - (void) get:(CDVInvokedUrlCommand*)command
 {
-    NSLog(@"get");
+    CDVPluginResult* pluginResult = nil;
+    NSString *key  = [command.arguments objectAtIndex:0];
+    NSString *service  = [command.arguments objectAtIndex:1];
+    
+    NSString *log = [NSString stringWithFormat: @"=== get method called with arguments: %@ %@", key, service];
+    NSLog(log);
+    
+    //pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"win"];
+    
+    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"reason"];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
 - (void) set:(CDVInvokedUrlCommand*)command
 {
-    NSLog(@"set");
+    CDVPluginResult* pluginResult = nil;
+    NSString *key  = [command.arguments objectAtIndex:0];
+    NSString *value  = [command.arguments objectAtIndex:1];
+    NSString *service  = [command.arguments objectAtIndex:2];
+    
+    NSString *log = [NSString stringWithFormat: @"=== set method called with arguments: %@ %@ %@", key, value, service];
+    NSLog(log);
+    
+    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"win"];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
 - (void) remove:(CDVInvokedUrlCommand*)command
 {
-    NSLog(@"remove");
+    CDVPluginResult* pluginResult = nil;
+    NSString *key  = [command.arguments objectAtIndex:0];
+    NSString *service  = [command.arguments objectAtIndex:1];
+    
+    NSString *log = [NSString stringWithFormat: @"=== remove method called with arguments:%@ %@", key, service];
+    NSLog(log);
+    
+    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"win"];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
-
 @end
