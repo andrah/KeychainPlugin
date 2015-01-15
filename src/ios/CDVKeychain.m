@@ -16,6 +16,7 @@
  */
 
 #import "CDVKeychain.h"
+#import "UICKeyChainStore.h"
 
 @implementation CDVKeychain
 
@@ -28,9 +29,9 @@
     NSString *log = [NSString stringWithFormat: @"=== get method called with arguments: %@ %@", key, service];
     NSLog(log);
     
-    //pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"win"];
+     NSString* value = [UICKeyChainStore stringForKey:key service:service];
     
-    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"reason"];
+    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:value];
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
@@ -44,7 +45,9 @@
     NSString *log = [NSString stringWithFormat: @"=== set method called with arguments: %@ %@ %@", key, value, service];
     NSLog(log);
     
-    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"win"];
+    [UICKeyChainStore setString:value forKey:key service:service];
+    
+    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
@@ -57,7 +60,9 @@
     NSString *log = [NSString stringWithFormat: @"=== remove method called with arguments:%@ %@", key, service];
     NSLog(log);
     
-    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"win"];
+    [UICKeyChainStore removeItemForKey:key service:service];
+    
+    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 @end
